@@ -7,6 +7,10 @@ import sys
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def home():
+    return "Bem-vindo ao seu servidor Python! O backend está no ar."
+
 @app.route('/upload', methods=['POST'])
 def upload_image():
     file = request.files['file']
@@ -33,17 +37,12 @@ def remove_background():
 @app.route('/images/all', methods=['GET'])
 def get_all_images():
     try:
-
         image_directory = 'images'
-
 
         if not os.path.exists(image_directory):
             return jsonify({"message": "Diretório de imagens não encontrado"}), 500
 
-
         image_list = os.listdir(image_directory)
-
-
         image_list = [img for img in image_list if img.endswith(('.png', '.jpg', '.jpeg', '.gif'))]
 
         return jsonify({"images": image_list}), 200
