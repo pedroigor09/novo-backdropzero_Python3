@@ -37,7 +37,6 @@ def remove_background():
     else:
         return jsonify({"message": "Erro ao processar a imagem"}), 500
 
-
 @app.route('/images/all', methods=['GET'])
 def get_all_images():
     try:
