@@ -9,6 +9,7 @@ CORS(app)
 
 @app.route('/')
 def home():
+    print("Requisição recebida na rota de boas-vindas")
     return "Bem-vindo ao seu servidor Python! O backend está no ar."
 
 @app.route('/upload', methods=['POST'])
@@ -22,7 +23,7 @@ def upload_image():
 def remove_background():
     file = request.files['file']
     file.save('input_image.png')
-    print("Imagem recebida e salva como input_image.png")
+    print("Imagem recebida na rota de remoção de fundo")
 
     result = subprocess.run([sys.executable, 'C:/source/backdropzero_Python/U-2-Net/u2net_test.py', 'input_image.png'], capture_output=True, text=True)
     print("Resultado da execução do script:", result.stdout)
