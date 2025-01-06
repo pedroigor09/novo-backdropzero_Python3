@@ -26,13 +26,8 @@ def remove_background():
         file.save('input_image.png')
         print("Imagem recebida na rota de remoção de fundo")
 
-        # Verificar a estrutura de diretórios
-        for root, dirs, files in os.walk("/app/app"):
-            print(f"Diretório: {root}")
-            for filename in files:
-                print(f"Arquivo: {filename}")
-
-        script_path = '/app/app/U-2-Net/u2net_test.py'
+        # Caminho corrigido para o script
+        script_path = '/app/U-2-Net/u2net_test.py'
         print("Caminho do script:", script_path)
 
         result = subprocess.run([sys.executable, script_path, 'input_image.png'], capture_output=True, text=True)
@@ -48,6 +43,7 @@ def remove_background():
     except Exception as e:
         print("Erro no processamento da imagem:", str(e))
         return jsonify({"message": "Erro no processamento da imagem"}), 500
+
 
 @app.route('/images/all', methods=['GET'])
 def get_all_images():
