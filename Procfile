@@ -1,1 +1,1 @@
-web: gunicorn my_app:app
+web: bash -c 'git submodule update --init --recursive && gunicorn my_app:app'
