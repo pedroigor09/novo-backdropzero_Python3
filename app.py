@@ -5,7 +5,7 @@ import os
 import sys
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Permitir todas as origens
 
 @app.route('/')
 def home():
@@ -28,7 +28,7 @@ def remove_background():
 
         # Caminho relativo para o script no Heroku
         script_path = os.path.join(os.path.dirname(__file__), 'app', 'U-2-Net', 'u2net_test.py')
-        print("Caminho do script:", script_path)
+        print("Caminho do script:", script_path)  # Adicione este log
 
         result = subprocess.run([sys.executable, script_path, 'input_image.png'], capture_output=True, text=True)
         print("Resultado da execução do script:", result.stdout)
