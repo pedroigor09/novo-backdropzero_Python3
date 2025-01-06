@@ -32,6 +32,12 @@ def remove_background():
             for filename in files:
                 print(f"Arquivo: {filename}")
 
+        # Verificar arquivos no diretório esperado
+        print("Listar arquivos no diretório /app/app/U-2-Net")
+        if os.path.exists("/app/app/U-2-Net"):
+            for filename in os.listdir("/app/app/U-2-Net"):
+                print(f"Arquivo: {filename}")
+
         # Caminhos potenciais para o script
         potential_paths = [
             '/app/app/U-2-Net/u2net_test.py',
