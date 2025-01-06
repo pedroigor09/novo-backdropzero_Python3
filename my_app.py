@@ -26,8 +26,22 @@ def remove_background():
         file.save('input_image.png')
         print("Imagem recebida na rota de remoção de fundo")
 
-        # Caminho corrigido para o script
-        script_path = '/app/U-2-Net/u2net_test.py'
+        # Caminho relativo para o script no Heroku
+        potential_paths = [
+            '/app/app/U-2-Net/u2net_test.py',
+            '/app/U-2-Net/u2net_test.py'
+        ]
+
+        script_path = None
+        for path in potential_paths:
+            if os.path.isfile(path):
+                script_path = path
+                break
+
+        if script_path is None:
+            print("Erro: Caminho do script não encontrado.")
+            return jsonify({"message": "Caminho do script não encontrado"}), 500
+
         print("Caminho do script:", script_path)
 
         result = subprocess.run([sys.executable, script_path, 'input_image.png'], capture_output=True, text=True)
@@ -43,6 +57,7 @@ def remove_background():
     except Exception as e:
         print("Erro no processamento da imagem:", str(e))
         return jsonify({"message": "Erro no processamento da imagem"}), 500
+
 
 
 @app.route('/images/all', methods=['GET'])
