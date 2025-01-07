@@ -1,2 +1,4 @@
 saved_models/u2net/u2net.pth
 .idea/
+# Ignorar pasta U-2-Net
+U-2-Net/
