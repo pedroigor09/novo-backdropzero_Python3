@@ -1,8 +1,10 @@
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
 import os
 import sys
+import traceback
+import base64
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -12,36 +14,33 @@ def home():
     print("Requisição recebida na rota de boas-vindas")
     return "Bem-vindo ao seu servidor Python! O backend está no ar."
 
-@app.route('/upload', methods=['POST'])
-def upload_image():
-    file = request.files['file']
-    file.save('uploaded_image.png')
-    print("Imagem recebida e salva como uploaded_image.png")
-    return jsonify({"message": "Upload bem-sucedido"}), 200
-
 @app.route('/remove-background', methods=['POST'])
 def remove_background():
     try:
         file = request.files['file']
-        file.save('input_image.png')
+        input_image_path = 'input_image.png'
+        file.save(input_image_path)
         print("Imagem recebida na rota de remoção de fundo")
 
         # Verificar a estrutura de diretórios
-        for root, dirs, files in os.walk("/app"):
+        for root, dirs, files in os.walk(os.getcwd()):
             print(f"Diretório: {root}")
             for filename in files:
                 print(f"Arquivo: {filename}")
 
         # Verificar arquivos no diretório esperado
-        print("Listar arquivos no diretório /app/U-2-Net")
-        if os.path.exists("/app/U-2-Net"):
-            for filename in os.listdir("/app/U-2-Net"):
+        print("Listar arquivos no diretório ./app/U-2-Net")
+        if os.path.exists("./app/U-2-Net"):
+            for filename in os.listdir("./app/U-2-Net"):
                 print(f"Arquivo: {filename}")
 
         # Caminhos potenciais para o script
         potential_paths = [
-            '/app/U-2-Net/u2net_test.py',
-            '/app/app/U-2-Net/u2net_test.py'
+            './app/U-2-Net/u2net_test.py',  # Verifique se este é o caminho correto
+            'app/U-2-Net/u2net_test.py',    # Verifique se este é o caminho correto
+            './U-2-Net/u2net_test.py',      # Verifique se este é o caminho correto
+            '/app/U-2-Net/u2net_test.py',   # Caminho absoluto potencial
+            '/U-2-Net/u2net_test.py'        # Caminho absoluto potencial
         ]
 
         script_path = None
@@ -50,42 +49,35 @@ def remove_background():
                 script_path = path
                 break
 
-        if script_path is None:
+        if (script_path == None):
             print("Erro: Caminho do script não encontrado.")
             return jsonify({"message": "Caminho do script não encontrado"}), 500
 
         print("Caminho do script:", script_path)
 
-        result = subprocess.run([sys.executable, script_path, 'input_image.png'], capture_output=True, text=True)
+        result = subprocess.run([sys.executable, script_path, input_image_path], capture_output=True, text=True)
         print("Resultado da execução do script:", result.stdout)
         print("Erros da execução do script:", result.stderr)
 
-        processed_image_path = 'input_image_processed.png'
+        processed_image_path = os.path.join('test_data', 'u2net_results', 'input_image.png')
         if os.path.exists(processed_image_path):
-            return send_file(processed_image_path, mimetype='image/png')
+            with open(processed_image_path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+            if not encoded_string:
+                print("Erro: A string codificada está vazia.")
+                return jsonify({"message": "Erro ao processar a imagem"}), 500
+            print("String base64 codificada:", encoded_string)  # Log da string base64
+            return jsonify({"id": 123, "data": encoded_string})
         else:
+            print("Erro: Imagem processada não encontrada.")
             return jsonify({"message": "Erro ao processar a imagem"}), 500
 
     except Exception as e:
         print("Erro no processamento da imagem:", str(e))
+        print("Stack trace:", traceback.format_exc())
         return jsonify({"message": "Erro no processamento da imagem"}), 500
 
-@app.route('/images/all', methods=['GET'])
-def get_all_images():
-    try:
-        image_directory = 'images'
-
-        if not os.path.exists(image_directory):
-            return jsonify({"message": "Diretório de imagens não encontrado"}), 500
-
-        image_list = os.listdir(image_directory)
-        image_list = [img for img in image_list if img.endswith(('.png', '.jpg', '.jpeg', '.gif'))]
-
-        return jsonify({"images": image_list}), 200
-
-    except Exception as e:
-        print("Erro ao listar imagens:", str(e))
-        return jsonify({"message": "Erro ao listar imagens"}), 500
-
 if __name__ == '__main__':
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
     app.run(host='0.0.0.0', port=5000)
