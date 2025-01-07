@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f3d315c-5498-4060-8966-6ee8d701b641" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/backdropzero_Python3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/my_test_package.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.slugignore" beforeDir="false" afterPath="$PROJECT_DIR$/.slugignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/U-2-Net" beforeDir="false" afterPath="$PROJECT_DIR$/app/U-2-Net" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/U-2-Net/model/u2net.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/U-2-Net/model/u2net.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/U-2-Net/u2net_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/U-2-Net/u2net_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backdropzero_Python.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste_importacao.py" beforeDir="false" afterPath="$PROJECT_DIR$/teste_importacao.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/app/U-2-Net" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -42,7 +29,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "953286d7",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/source/backdropzero_Python3/venv/new_env",
     "node.js.detected.package.eslint": "true",
@@ -98,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736173053897</updated>
       <workItem from="1736173055025" duration="7731000" />
-      <workItem from="1736207687567" duration="2559000" />
+      <workItem from="1736207687567" duration="2856000" />
     </task>
     <servers />
   </component>
