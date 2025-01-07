@@ -1,10 +1,10 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import subprocess
 import os
 import sys
+import subprocess
 import traceback
 import base64
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -23,6 +23,7 @@ def remove_background():
         print("Imagem recebida na rota de remoção de fundo")
 
         # Verificar a estrutura de diretórios
+        print("Estrutura de diretórios atual:")
         for root, dirs, files in os.walk(os.getcwd()):
             print(f"Diretório: {root}")
             for filename in files:
@@ -36,20 +37,21 @@ def remove_background():
 
         # Caminhos potenciais para o script
         potential_paths = [
-            './app/U-2-Net/u2net_test.py',  # Verifique se este é o caminho correto
-            'app/U-2-Net/u2net_test.py',    # Verifique se este é o caminho correto
-            './U-2-Net/u2net_test.py',      # Verifique se este é o caminho correto
-            '/app/U-2-Net/u2net_test.py',   # Caminho absoluto potencial
-            '/U-2-Net/u2net_test.py'        # Caminho absoluto potencial
+            './app/U-2-Net/u2net_test.py',
+            'app/U-2-Net/u2net_test.py',
+            './U-2-Net/u2net_test.py',
+            '/app/U-2-Net/u2net_test.py',
+            '/U-2-Net/u2net_test.py'
         ]
 
         script_path = None
         for path in potential_paths:
+            print(f"Verificando caminho: {path}")
             if os.path.isfile(path):
                 script_path = path
                 break
 
-        if (script_path == None):
+        if not script_path:
             print("Erro: Caminho do script não encontrado.")
             return jsonify({"message": "Caminho do script não encontrado"}), 500
 
