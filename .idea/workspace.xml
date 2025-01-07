@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f3d315c-5498-4060-8966-6ee8d701b641" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/U-2-Net" beforeDir="false" afterPath="$PROJECT_DIR$/app/U-2-Net" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/U-2-Net/model/u2net.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/U-2-Net/model/u2net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/U-2-Net/u2net_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/U-2-Net/u2net_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="1f3d315c-5498-4060-8966-6ee8d701b641" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1736173053897</updated>
       <workItem from="1736173055025" duration="7731000" />
-      <workItem from="1736207687567" duration="2856000" />
+      <workItem from="1736207687567" duration="3048000" />
     </task>
     <servers />
   </component>
